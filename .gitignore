@@ -1,29 +1,36 @@
+# Python cache
 __pycache__/
 *.py[cod]
 
-# Local environments
-venv/
-.venv/
+# Large model files
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
 
-# Raw inputs and generated media can be large; keep the folders only.
-video_inputs/*
-!video_inputs/.gitkeep
-video_frames/*
-!video_frames/.gitkeep
-character_refs/*
-!character_refs/.gitkeep
-face_crops/*
-!face_crops/.gitkeep
-body_refs/*
-!body_refs/.gitkeep
-pose_refs/*
-!pose_refs/.gitkeep
-outputs/*
+# Raw/private/generated project data
+outputs/
+video_frames/
+face_crops/
+logs/
+video_inputs/
+character_refs/
+body_refs/
+pose_refs/
+
+# Keep empty directory placeholders
 !outputs/.gitkeep
-logs/*
+!video_frames/.gitkeep
+!face_crops/.gitkeep
 !logs/.gitkeep
+!video_inputs/.gitkeep
+!character_refs/.gitkeep
+!body_refs/.gitkeep
+!pose_refs/.gitkeep
 
-# Track workflow JSON files, but keep placeholder too.
+# Workflows are source assets and should be tracked.
 workflows/*
 !workflows/.gitkeep
+!workflows/README.md
 !workflows/**/*.json

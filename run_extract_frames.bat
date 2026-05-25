@@ -32,6 +32,6 @@ if not exist "%INPUT_VIDEO%" (
     exit /b 1
 )
 
-"%PYTHON%" "%~dp0extract_frames.py" --input "%INPUT_VIDEO%" --output "%OUTPUT_DIR%" --fps "%FPS%"
+"%PYTHON%" "%~dp0scripts\extract_frames.py" --input "%INPUT_VIDEO%" --output "%OUTPUT_DIR%" --fps "%FPS%"
 
 pause

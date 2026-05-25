@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 
-SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = Path(__file__).resolve().parents[1]
 
 
 def positive_float(value: str) -> float:
@@ -22,7 +22,7 @@ def positive_float(value: str) -> float:
 def resolve_project_path(value: str) -> Path:
     path = Path(value)
     if not path.is_absolute():
-        path = SCRIPT_DIR / path
+        path = PROJECT_DIR / path
     return path.resolve()
 
 
@@ -31,7 +31,7 @@ def load_cv2():
         import cv2  # type: ignore
     except ImportError:
         print(
-            "ERROR: OpenCV is not installed. Run run_extract_frames.bat or install it with:\n"
+            "ERROR: OpenCV is not installed. Install it with:\n"
             "D:\\sd.webui\\ComfyUI\\venv\\Scripts\\python.exe -m pip install opencv-python",
             file=sys.stderr,
         )
@@ -86,7 +86,7 @@ def extract_frames(input_path: Path, output_dir: Path, target_fps: float) -> int
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Extract frames from a video into PNG files."
+        description="Extract PNG frames from a video at a target FPS."
     )
     parser.add_argument("--input", required=True, help="Input video path.")
     parser.add_argument(
