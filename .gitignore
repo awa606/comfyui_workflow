@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+
+# Local environments
+venv/
+.venv/
+
+# Raw inputs and generated media can be large; keep the folders only.
+video_inputs/*
+!video_inputs/.gitkeep
+video_frames/*
+!video_frames/.gitkeep
+character_refs/*
+!character_refs/.gitkeep
+face_crops/*
+!face_crops/.gitkeep
+body_refs/*
+!body_refs/.gitkeep
+pose_refs/*
+!pose_refs/.gitkeep
+outputs/*
+!outputs/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Track workflow JSON files, but keep placeholder too.
+workflows/*
+!workflows/.gitkeep
+!workflows/**/*.json
