@@ -88,22 +88,32 @@ FIELDNAMES = [
     "face_count",
     "face_quality",
     "face_quality_score",
+    "face_cluster_id",
     "face_det_score",
     "face_height_ratio",
     "face_area_ratio",
     "blur_score",
     "body_view",
     "outfit_id",
+    "outfit_type",
     "hairstyle",
     "makeup",
     "pose_type",
+    "shoes_visible",
+    "hands_visible",
+    "feet_visible",
     "scene",
+    "scene_type",
+    "object_tags",
+    "depth_available",
+    "mask_available",
     "use_for_faceid",
     "use_for_lora",
     "use_for_outfit_ref",
     "use_for_body_ref",
     "use_for_leg_shoes_ref",
     "use_for_pose_ref",
+    "reject_reason",
     "notes",
 ]
 
@@ -521,6 +531,20 @@ def classify_frame(
     use_for_scene_ref = bool(scene_hits)
     hairstyle = "candidate" if hairstyle_hits or (face.has_face and body_view in {"face_closeup", "upper_body"}) else ""
     makeup = "candidate" if makeup_hits or (face.has_face and body_view == "face_closeup" and face.quality != "low") else ""
+    shoes_visible = yes(bool(leg_hits))
+    hands_visible = "unknown"
+    feet_visible = yes(any(hit in {"鞋", "足", "靴"} for hit in leg_hits)) if leg_hits else "unknown"
+    scene_type = "candidate" if scene_hits else ""
+    object_tags = sorted(
+        set(
+            [outfit_id] if outfit_id else []
+        )
+        | set(leg_hits)
+        | set(hairstyle_hits)
+        | set(makeup_hits)
+        | set(pose_hits)
+        | set(scene_hits)
+    )
 
     candidate_dirs: list[str] = []
     if use_for_faceid:
@@ -598,22 +622,32 @@ def classify_frame(
         "face_count": str(face.face_count),
         "face_quality": face.quality,
         "face_quality_score": f"{face.quality_score:.4f}",
+        "face_cluster_id": "",
         "face_det_score": f"{face.det_score:.4f}",
         "face_height_ratio": f"{face.height_ratio:.4f}",
         "face_area_ratio": f"{face.area_ratio:.5f}",
         "blur_score": f"{face.blur_score:.4f}",
         "body_view": body_view,
         "outfit_id": outfit_id,
+        "outfit_type": outfit_id or ("candidate" if use_for_outfit_ref else ""),
         "hairstyle": hairstyle,
         "makeup": makeup,
         "pose_type": "candidate" if pose_hits else "",
+        "shoes_visible": shoes_visible,
+        "hands_visible": hands_visible,
+        "feet_visible": feet_visible,
         "scene": "candidate" if scene_hits else "",
+        "scene_type": scene_type,
+        "object_tags": ";".join(object_tags),
+        "depth_available": "no",
+        "mask_available": "no",
         "use_for_faceid": yes(use_for_faceid),
         "use_for_lora": yes(use_for_lora),
         "use_for_outfit_ref": yes(use_for_outfit_ref),
         "use_for_body_ref": yes(use_for_body_ref),
         "use_for_leg_shoes_ref": yes(use_for_leg_shoes_ref),
         "use_for_pose_ref": yes(use_for_pose_ref),
+        "reject_reason": "; ".join(notes) if category == "rejected" else "",
         "notes": "; ".join(notes),
     }
 
@@ -979,8 +1013,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--manifest",
-        default="characters/role_001/metadata/triage_manifest.csv",
-        help="Output CSV manifest path.",
+        default="asset_library/metadata/master_asset_index.csv",
+        help="Output CSV manifest path. Defaults to asset_library/metadata/master_asset_index.csv.",
     )
     parser.add_argument(
         "--library-dir",

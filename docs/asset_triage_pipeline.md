@@ -21,7 +21,7 @@
 
 - role_001 角色库：用于样板角色的身份、FaceID、LoRA 候选、服装、姿势等分类。
 - `asset_library` 通用素材库：用于沉淀暂不绑定 role_001 的服装、身体参考、腿/鞋、发型、妆容、姿势、场景等候选。
-- `metadata`：输出 manifest，记录每张图片或抽帧的来源、质量评分和候选用途。
+- `metadata`：输出 `master_asset_index.csv`，记录每张图片或抽帧的来源、质量评分和候选用途。
 
 ## 自动识别内容
 
@@ -32,7 +32,7 @@
 - 使用本地 InsightFace `buffalo_l` 做人脸检测。
 - 计算脸部大小、检测置信度、清晰度和综合质量分。
 - 根据画面和文件名关键词标注服装、发型、妆容、腿/鞋、姿势、场景候选。
-- 输出 CSV manifest。
+- 输出 CSV manifest，默认路径为 `asset_library/metadata/master_asset_index.csv`。
 - 可选择只输出清单，也可把候选图片硬链接或复制到角色库和通用素材库。
 
 它不会：
@@ -45,7 +45,7 @@
 
 ## 推荐试跑
 
-先小批量，只生成 manifest，不搬运候选文件：
+先小批量，只生成 `master_asset_index.csv`，不搬运候选文件：
 
 ```powershell
 cd D:\sd.webui\comic_project
@@ -125,7 +125,7 @@ role_001 候选会进入：
 
 - 小批量 `--limit-files 30`。
 - 先 `manifest-only`。
-- 看 manifest 后再决定是否硬链接候选文件。
+- 看 `master_asset_index.csv` 后再决定是否硬链接候选文件。
 
 ## Git 边界
 
@@ -141,7 +141,6 @@ role_001 候选会进入：
 - 视频
 - 抽帧结果
 - 生成图
-- manifest CSV
+- 本地 CSV manifest，包括 `master_asset_index.csv`
 - 日志 CSV
 - 模型文件
-
