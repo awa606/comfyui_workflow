@@ -12,6 +12,7 @@ __pycache__/
 
 # Raw/private/generated project data
 outputs/*
+metadata/*
 video_frames/
 face_crops/
 logs/*
@@ -95,6 +96,11 @@ outputs/role_001_faceid_tests/*
 !outputs/model_tests/
 outputs/model_tests/*
 !outputs/model_tests/.gitkeep
+!outputs/cluster_contact_sheets/
+outputs/cluster_contact_sheets/*
+!outputs/cluster_contact_sheets/.gitkeep
+!metadata/
+!metadata/.gitkeep
 !video_frames/.gitkeep
 !face_crops/.gitkeep
 !logs/
