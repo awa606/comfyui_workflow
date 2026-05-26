@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_ROLE_DIR = PROJECT_DIR / "characters" / "role_001"
+DEFAULT_ROLE = "role_001"
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v", ".wmv"}
 
 
@@ -96,14 +96,21 @@ def extract_video(video_path: Path, output_root: Path, target_fps: float) -> int
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Extract keyframes for role_001.")
+    parser = argparse.ArgumentParser(description="Extract keyframes for one character role.")
+    parser.add_argument(
+        "--role",
+        default=DEFAULT_ROLE,
+        help="Role id under characters/, for example role_001.",
+    )
     parser.add_argument(
         "--input-dir",
-        default=str((DEFAULT_ROLE_DIR / "raw_videos").relative_to(PROJECT_DIR)),
+        default=None,
+        help="Optional input directory. Defaults to characters/<role>/raw_videos.",
     )
     parser.add_argument(
         "--output-dir",
-        default=str((DEFAULT_ROLE_DIR / "extracted_frames").relative_to(PROJECT_DIR)),
+        default=None,
+        help="Optional output directory. Defaults to characters/<role>/extracted_frames.",
     )
     parser.add_argument("--fps", type=positive_float, default=1.0)
     return parser
@@ -111,8 +118,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> int:
     args = build_parser().parse_args()
-    input_dir = resolve_project_path(args.input_dir)
-    output_dir = resolve_project_path(args.output_dir)
+    role_dir = PROJECT_DIR / "characters" / args.role
+    input_dir = resolve_project_path(args.input_dir) if args.input_dir else role_dir / "raw_videos"
+    output_dir = resolve_project_path(args.output_dir) if args.output_dir else role_dir / "extracted_frames"
 
     videos = iter_videos(input_dir)
     if not videos:

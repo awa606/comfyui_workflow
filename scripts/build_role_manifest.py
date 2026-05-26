@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
-DEFAULT_ROLE_DIR = PROJECT_DIR / "characters" / "role_001"
+DEFAULT_ROLE = "role_001"
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff"}
 FIELDNAMES = [
     "file_path",
@@ -106,16 +106,29 @@ def write_manifest(role_dir: Path, output_path: Path) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Build a CSV manifest for role_001 images.")
-    parser.add_argument("--role-dir", default=str(DEFAULT_ROLE_DIR.relative_to(PROJECT_DIR)))
-    parser.add_argument("--output", default="characters/role_001/metadata/manifest.csv")
+    parser = argparse.ArgumentParser(description="Build a CSV manifest for one character role.")
+    parser.add_argument(
+        "--role",
+        default=DEFAULT_ROLE,
+        help="Role id under characters/, for example role_001.",
+    )
+    parser.add_argument(
+        "--role-dir",
+        default=None,
+        help="Optional role directory. Defaults to characters/<role>.",
+    )
+    parser.add_argument(
+        "--output",
+        default=None,
+        help="Optional CSV path. Defaults to characters/<role>/metadata/manifest.csv.",
+    )
     return parser
 
 
 def main() -> int:
     args = build_parser().parse_args()
-    role_dir = resolve_project_path(args.role_dir)
-    output_path = resolve_project_path(args.output)
+    role_dir = resolve_project_path(args.role_dir) if args.role_dir else PROJECT_DIR / "characters" / args.role
+    output_path = resolve_project_path(args.output) if args.output else role_dir / "metadata" / "manifest.csv"
     count = write_manifest(role_dir, output_path)
     print(f"Wrote manifest: {output_path}")
     print(f"Images included: {count}")

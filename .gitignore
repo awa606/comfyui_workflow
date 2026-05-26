@@ -11,16 +11,16 @@ __pycache__/
 *.onnx
 
 # Raw/private/generated project data
-outputs/
+outputs/*
 video_frames/
 face_crops/
-logs/
+logs/*
 video_inputs/
 character_refs/
 body_refs/
 pose_refs/
 datasets/
-model_tests/
+model_tests/*
 models_research/**/*.png
 models_research/**/*.jpg
 models_research/**/*.jpeg
@@ -72,9 +72,17 @@ characters/**/metadata/*.csv
 !characters/**/.gitkeep
 
 # Keep empty directory placeholders
+!outputs/
 !outputs/.gitkeep
+!outputs/role_001_faceid_tests/
+outputs/role_001_faceid_tests/*
+!outputs/role_001_faceid_tests/.gitkeep
+!outputs/model_tests/
+outputs/model_tests/*
+!outputs/model_tests/.gitkeep
 !video_frames/.gitkeep
 !face_crops/.gitkeep
+!logs/
 !logs/.gitkeep
 !video_inputs/.gitkeep
 !character_refs/.gitkeep
