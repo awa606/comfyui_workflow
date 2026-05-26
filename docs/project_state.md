@@ -27,6 +27,7 @@ role_001 素材目录 -> 图片/视频导入 -> 视频抽帧 -> 人工筛选 -> 
 - FaceID / IPAdapter 类工作流已初步测试，但角色相似度仍不稳定。
 - GitHub 仓库 `awa606/comfyui_workflow` 已存在。
 - 本仓库已建立 role_001 目录框架、素材标准文档、抽帧脚本和 manifest 脚本框架。
+- 本仓库已建立 `asset_library` 通用素材库框架，用于沉淀服装、身体参考、腿/鞋、发型、妆容、姿势、场景等非角色身份候选素材。
 
 ## 当前未完成
 
@@ -68,6 +69,14 @@ role_001 素材目录 -> 图片/视频导入 -> 视频抽帧 -> 人工筛选 -> 
 6. 根据 manifest 更新 `docs/role_001_material_review.md`。
 7. 素材达标后再进入 FaceID / IPAdapter 测试批次。
 
+如果素材仍集中在 `D:\sd.webui\train_material` 和 `D:\sd.webui\douyin_download`，优先使用 `scripts/triage_douyin_assets.py` 做本地分诊：
+
+1. 小批量扫描两个默认素材根目录。
+2. 视频抽样帧。
+3. 本地人脸检测与质量评分。
+4. 生成 triage manifest。
+5. 用户人工复核后，再把候选素材固定到 role_001 或通用素材库。
+
 ## 仓库边界
 
 可以提交：
@@ -89,4 +98,3 @@ role_001 素材目录 -> 图片/视频导入 -> 视频抽帧 -> 人工筛选 -> 
 - `.pth`
 - `.bin`
 - 本地生成的 manifest CSV 和日志 CSV
-

@@ -16,6 +16,10 @@ import numpy as np
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
+DEFAULT_SOURCE_ROOTS = [
+    PROJECT_DIR.parent / "train_material",
+    PROJECT_DIR.parent / "douyin_download",
+]
 PRIMARY_SOURCE_DIR = PROJECT_DIR.parent / "douyin_download" / "\u5c0f\u7f8a\u7ef5\u7ef5\u51b0"
 SECONDARY_SOURCE_DIR = PROJECT_DIR.parent / "train_material" / "\u5c0f\u6069"
 DEFAULT_SOURCE_CANDIDATES = [
@@ -27,6 +31,7 @@ DEFAULT_SOURCE_DIR = next(
     PRIMARY_SOURCE_DIR,
 )
 DEFAULT_ROLE_DIR = PROJECT_DIR / "characters" / "role_001"
+DEFAULT_LIBRARY_DIR = PROJECT_DIR / "asset_library"
 DEFAULT_FACE_MODEL_ROOT = Path("D:/sd.webui/ComfyUI/models/insightface")
 
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v", ".wmv"}
@@ -55,15 +60,30 @@ ROLE_DIRS = [
     "metadata",
 ]
 
+ASSET_LIBRARY_DIRS = [
+    "identity_faces",
+    "body_refs",
+    "outfit_refs",
+    "hairstyle_refs",
+    "makeup_refs",
+    "leg_shoes_refs",
+    "pose_refs",
+    "scene_refs",
+    "rejected",
+    "metadata",
+]
+
 FIELDNAMES = [
     "file_path",
     "source_file",
+    "source_root",
     "source_person_id",
     "source_kind",
     "frame_index",
     "timestamp_seconds",
     "category",
     "candidate_dirs",
+    "library_dirs",
     "has_face",
     "face_count",
     "face_quality",
@@ -154,6 +174,13 @@ KEYWORDS = {
 
 
 @dataclass
+class SourceAsset:
+    path: Path
+    source_root: Path
+    source_person_id: str
+
+
+@dataclass
 class FaceStats:
     has_face: bool
     face_count: int = 0
@@ -170,6 +197,7 @@ class FaceStats:
 class FrameItem:
     image_path: Path
     source_file: Path
+    source_root: Path
     source_person_id: str
     source_kind: str
     frame_index: int | None
@@ -280,6 +308,16 @@ def ascii_video_link(video_path: Path, role_dir: Path) -> Path:
     return target
 
 
+def source_person_id_for(asset_path: Path, source_root: Path) -> str:
+    try:
+        relative = asset_path.relative_to(source_root)
+    except ValueError:
+        return source_root.name
+    if len(relative.parts) >= 2:
+        return relative.parts[0]
+    return source_root.name
+
+
 def iter_assets(source_dir: Path) -> list[Path]:
     return sorted(
         path
@@ -287,6 +325,28 @@ def iter_assets(source_dir: Path) -> list[Path]:
         if path.is_file()
         and path.suffix.lower() in VIDEO_EXTENSIONS.union(IMAGE_EXTENSIONS)
     )
+
+
+def discover_source_assets(source_dirs: list[Path]) -> list[SourceAsset]:
+    discovered: list[SourceAsset] = []
+    seen: set[Path] = set()
+    for source_dir in source_dirs:
+        if not source_dir.exists():
+            safe_print(f"WARN: source directory not found, skipped: {source_dir}", error=True)
+            continue
+        for asset_path in iter_assets(source_dir):
+            resolved = asset_path.resolve()
+            if resolved in seen:
+                continue
+            seen.add(resolved)
+            discovered.append(
+                SourceAsset(
+                    path=resolved,
+                    source_root=source_dir.resolve(),
+                    source_person_id=source_person_id_for(resolved, source_dir.resolve()),
+                )
+            )
+    return sorted(discovered, key=lambda item: (str(item.source_root), item.source_person_id, str(item.path)))
 
 
 def ensure_role_dirs(role_dir: Path, candidate_subdir: str) -> None:
@@ -299,6 +359,21 @@ def ensure_role_dirs(role_dir: Path, candidate_subdir: str) -> None:
 
     for relative in candidate_roots(candidate_subdir):
         directory = role_dir / relative
+        directory.mkdir(parents=True, exist_ok=True)
+
+
+def ensure_asset_library_dirs(library_dir: Path, candidate_subdir: str) -> None:
+    for relative in ASSET_LIBRARY_DIRS:
+        directory = library_dir / relative
+        directory.mkdir(parents=True, exist_ok=True)
+        gitkeep = directory / ".gitkeep"
+        if not gitkeep.exists():
+            gitkeep.write_text("\n", encoding="utf-8")
+
+    for base in ASSET_LIBRARY_DIRS:
+        if base == "metadata":
+            continue
+        directory = library_dir / base / candidate_subdir
         directory.mkdir(parents=True, exist_ok=True)
 
 
@@ -485,17 +560,40 @@ def classify_frame(
         candidate_dirs.append(f"rejected/{candidate_subdir}")
         notes.append("no_clear_training_use_auto_rejected")
 
+    person_dir = safe_name(item.source_person_id)
+    library_dirs: list[str] = []
+    if use_for_faceid or use_for_lora:
+        library_dirs.append(f"identity_faces/{person_dir}/{candidate_subdir}")
+    if use_for_body_ref:
+        library_dirs.append(f"body_refs/{person_dir}/{candidate_subdir}")
+    if use_for_outfit_ref:
+        library_dirs.append(f"outfit_refs/{person_dir}/{candidate_subdir}")
+    if hairstyle:
+        library_dirs.append(f"hairstyle_refs/{person_dir}/{candidate_subdir}")
+    if makeup:
+        library_dirs.append(f"makeup_refs/{person_dir}/{candidate_subdir}")
+    if use_for_leg_shoes_ref:
+        library_dirs.append(f"leg_shoes_refs/{person_dir}/{candidate_subdir}")
+    if use_for_pose_ref:
+        library_dirs.append(f"pose_refs/{person_dir}/{candidate_subdir}")
+    if use_for_scene_ref:
+        library_dirs.append(f"scene_refs/{person_dir}/{candidate_subdir}")
+    if not library_dirs:
+        library_dirs.append(f"rejected/{person_dir}/{candidate_subdir}")
+
     category = primary_category(candidate_dirs)
 
     return {
         "file_path": relative_to_project(item.image_path),
         "source_file": relative_to_project(item.source_file),
+        "source_root": relative_to_project(item.source_root),
         "source_person_id": item.source_person_id,
         "source_kind": item.source_kind,
         "frame_index": "" if item.frame_index is None else str(item.frame_index),
         "timestamp_seconds": "" if item.timestamp_seconds is None else f"{item.timestamp_seconds:.3f}",
         "category": category,
         "candidate_dirs": ";".join(dict.fromkeys(candidate_dirs)),
+        "library_dirs": ";".join(dict.fromkeys(library_dirs)),
         "has_face": yes(face.has_face),
         "face_count": str(face.face_count),
         "face_quality": face.quality,
@@ -566,9 +664,19 @@ def place_candidates(role_dir: Path, row: dict[str, str], image_path: Path, mode
         link_or_copy(image_path, target, mode)
 
 
+def place_library_candidates(library_dir: Path, row: dict[str, str], image_path: Path, mode: str) -> None:
+    if mode in {"none", "manifest-only"}:
+        return
+    name = image_path.name
+    for relative_dir in row["library_dirs"].split(";"):
+        target = library_dir / relative_dir / name
+        link_or_copy(image_path, target, mode)
+
+
 def sample_video(
     video_path: Path,
     role_dir: Path,
+    source_root: Path,
     source_person_id: str,
     sample_fps: float,
     max_frames: int,
@@ -581,6 +689,7 @@ def sample_video(
         return sample_video_with_av(
             video_path=video_path,
             role_dir=role_dir,
+            source_root=source_root,
             source_person_id=source_person_id,
             sample_fps=sample_fps,
             max_frames=max_frames,
@@ -594,6 +703,7 @@ def sample_video(
         return sample_video_with_av(
             video_path=video_path,
             role_dir=role_dir,
+            source_root=source_root,
             source_person_id=source_person_id,
             sample_fps=sample_fps,
             max_frames=max_frames,
@@ -630,6 +740,7 @@ def sample_video(
                 FrameItem(
                     image_path=output_path,
                     source_file=video_path,
+                    source_root=source_root,
                     source_person_id=source_person_id,
                     source_kind="video_frame",
                     frame_index=frame_index,
@@ -645,6 +756,7 @@ def sample_video(
 def sample_video_with_av(
     video_path: Path,
     role_dir: Path,
+    source_root: Path,
     source_person_id: str,
     sample_fps: float,
     max_frames: int,
@@ -693,6 +805,7 @@ def sample_video_with_av(
                         FrameItem(
                             image_path=output_path,
                             source_file=video_path,
+                            source_root=source_root,
                             source_person_id=source_person_id,
                             source_kind="video_frame",
                             frame_index=decoded_index,
@@ -711,15 +824,23 @@ def sample_video_with_av(
         container.close()
 
 
-def source_status_row(source_file: Path, source_person_id: str, source_kind: str, notes: str) -> dict[str, str]:
+def source_status_row(
+    source_file: Path,
+    source_root: Path,
+    source_person_id: str,
+    source_kind: str,
+    notes: str,
+) -> dict[str, str]:
     row = {field: "" for field in FIELDNAMES}
     row.update(
         {
             "source_file": relative_to_project(source_file),
+            "source_root": relative_to_project(source_root),
             "source_person_id": source_person_id,
             "source_kind": source_kind,
             "category": "unreadable_or_audio_only",
             "candidate_dirs": "rejected/candidates",
+            "library_dirs": f"rejected/{safe_name(source_person_id)}/candidates",
             "has_face": "no",
             "face_count": "0",
             "face_quality": "not_checked",
@@ -736,7 +857,12 @@ def source_status_row(source_file: Path, source_person_id: str, source_kind: str
     return row
 
 
-def prepare_image_item(image_path: Path, role_dir: Path, source_person_id: str) -> FrameItem | None:
+def prepare_image_item(
+    image_path: Path,
+    role_dir: Path,
+    source_root: Path,
+    source_person_id: str,
+) -> FrameItem | None:
     image = read_image(image_path)
     if image is None:
         safe_print(f"WARN: could not read image: {image_path}", error=True)
@@ -752,6 +878,7 @@ def prepare_image_item(image_path: Path, role_dir: Path, source_person_id: str) 
     return FrameItem(
         image_path=output_path,
         source_file=image_path,
+        source_root=source_root,
         source_person_id=source_person_id,
         source_kind="source_image",
         frame_index=None,
@@ -762,9 +889,11 @@ def prepare_image_item(image_path: Path, role_dir: Path, source_person_id: str) 
 def process_items(
     items: Iterable[FrameItem],
     role_dir: Path,
+    library_dir: Path,
     face_app,
     candidate_subdir: str,
     copy_mode: str,
+    library_copy_mode: str,
     faceid_threshold: float,
     lora_threshold: float,
 ) -> list[dict[str, str]]:
@@ -783,6 +912,7 @@ def process_items(
             lora_threshold=lora_threshold,
         )
         place_candidates(role_dir, row, item.image_path, copy_mode)
+        place_library_candidates(library_dir, row, item.image_path, library_copy_mode)
         rows.append(row)
     return rows
 
@@ -817,15 +947,30 @@ def print_summary(rows: list[dict[str, str]]) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Triage Douyin assets for one role into multi-use candidate datasets."
+        description="Triage image/video sources into role and shared asset-library candidates."
     )
     parser.add_argument(
         "--source-dir",
-        default=display_default_path(DEFAULT_SOURCE_DIR),
+        action="append",
+        default=None,
         help=(
-            "Person folder to scan. Defaults to 小羊绵绵冰 under douyin_download; "
-            "falls back to train_material/小恩 if the primary folder is missing."
+            "Specific folder to scan. Can be repeated. If omitted, defaults to 小羊绵绵冰 "
+            "under douyin_download, falling back to train_material/小恩."
         ),
+    )
+    parser.add_argument(
+        "--source-root",
+        action="append",
+        default=None,
+        help=(
+            "Root folder whose first-level subfolders are treated as person/material ids. "
+            "Can be repeated, for example D:\\sd.webui\\train_material and D:\\sd.webui\\douyin_download."
+        ),
+    )
+    parser.add_argument(
+        "--all-default-roots",
+        action="store_true",
+        help="Scan existing default roots: D:\\sd.webui\\train_material and D:\\sd.webui\\douyin_download.",
     )
     parser.add_argument(
         "--role-dir",
@@ -836,6 +981,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--manifest",
         default="characters/role_001/metadata/triage_manifest.csv",
         help="Output CSV manifest path.",
+    )
+    parser.add_argument(
+        "--library-dir",
+        default=str(DEFAULT_LIBRARY_DIR.relative_to(PROJECT_DIR)),
+        help="Shared asset library directory. Defaults to asset_library.",
     )
     parser.add_argument(
         "--sample-fps",
@@ -863,8 +1013,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--copy-mode",
         choices=["hardlink", "copy", "manifest-only"],
-        default="hardlink",
-        help="How to place frames in candidate dirs. Defaults to hardlink.",
+        default="manifest-only",
+        help="How to place frames in role candidate dirs. Defaults to manifest-only for safe pilot runs.",
+    )
+    parser.add_argument(
+        "--library-copy-mode",
+        choices=["none", "hardlink", "copy", "manifest-only"],
+        default="manifest-only",
+        help="How to place frames in asset_library candidate dirs. Defaults to manifest-only.",
     )
     parser.add_argument(
         "--face-model-root",
@@ -883,6 +1039,19 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def selected_source_dirs(args: argparse.Namespace) -> list[Path]:
+    values: list[str] = []
+    if args.all_default_roots:
+        values.extend(str(path) for path in DEFAULT_SOURCE_ROOTS)
+    if args.source_root:
+        values.extend(args.source_root)
+    if args.source_dir:
+        values.extend(args.source_dir)
+    if not values:
+        values.append(display_default_path(DEFAULT_SOURCE_DIR))
+    return [resolve_project_path(value) for value in values]
+
+
 def main() -> int:
     args = build_parser().parse_args()
     if args.sample_fps <= 0:
@@ -890,50 +1059,61 @@ def main() -> int:
     if args.max_frames_per_file < 0:
         raise SystemExit("ERROR: --max-frames-per-file must be 0 or greater")
 
-    source_dir = resolve_project_path(args.source_dir)
+    source_dirs = selected_source_dirs(args)
     role_dir = resolve_project_path(args.role_dir)
+    library_dir = resolve_project_path(args.library_dir)
     manifest_path = resolve_project_path(args.manifest)
 
-    if not source_dir.exists():
-        raise SystemExit(f"ERROR: source directory not found: {source_dir}")
-
     ensure_role_dirs(role_dir, args.candidate_subdir)
+    ensure_asset_library_dirs(library_dir, args.candidate_subdir)
     face_app = None if args.no_face_detect else load_face_app(resolve_project_path(args.face_model_root), args.det_size)
 
-    assets = iter_assets(source_dir)
+    assets = discover_source_assets(source_dirs)
     if args.limit_files > 0:
         assets = assets[: args.limit_files]
     if not assets:
-        safe_print(f"No video/image assets found in: {source_dir}")
+        safe_print("No video/image assets found in selected source directories.")
         return 0
 
     rows: list[dict[str, str]] = []
-    source_person_id = source_dir.name
-    for index, asset_path in enumerate(assets, start=1):
-        safe_print(f"[{index}/{len(assets)}] {asset_path.name}")
+    for index, asset in enumerate(assets, start=1):
+        asset_path = asset.path
+        source_person_id = asset.source_person_id
+        safe_print(f"[{index}/{len(assets)}] {source_person_id}: {asset_path.name}")
         if asset_path.suffix.lower() in VIDEO_EXTENSIONS:
             items, status_note = sample_video(
                 video_path=asset_path,
                 role_dir=role_dir,
+                source_root=asset.source_root,
                 source_person_id=source_person_id,
                 sample_fps=args.sample_fps,
                 max_frames=args.max_frames_per_file,
                 jpeg_quality=args.jpeg_quality,
             )
             if not items:
-                rows.append(source_status_row(asset_path, source_person_id, "video_source", status_note))
+                rows.append(
+                    source_status_row(
+                        asset_path,
+                        asset.source_root,
+                        source_person_id,
+                        "video_source",
+                        status_note,
+                    )
+                )
                 safe_print(f"  WARN: {status_note}", error=True)
                 continue
         else:
-            item = prepare_image_item(asset_path, role_dir, source_person_id)
+            item = prepare_image_item(asset_path, role_dir, asset.source_root, source_person_id)
             items = [] if item is None else [item]
         rows.extend(
             process_items(
                 items=items,
                 role_dir=role_dir,
+                library_dir=library_dir,
                 face_app=face_app,
                 candidate_subdir=args.candidate_subdir,
                 copy_mode=args.copy_mode,
+                library_copy_mode=args.library_copy_mode,
                 faceid_threshold=args.faceid_threshold,
                 lora_threshold=args.lora_threshold,
             )

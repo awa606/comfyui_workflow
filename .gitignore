@@ -50,6 +50,21 @@ models_research/**/*.json
 models_research/**/*.zip
 models_research/**/*.tar
 models_research/**/*.tar.gz
+asset_library/**/*.png
+asset_library/**/*.jpg
+asset_library/**/*.jpeg
+asset_library/**/*.webp
+asset_library/**/*.bmp
+asset_library/**/*.tif
+asset_library/**/*.tiff
+asset_library/**/*.mp4
+asset_library/**/*.mov
+asset_library/**/*.avi
+asset_library/**/*.mkv
+asset_library/**/*.webm
+asset_library/**/*.m4v
+asset_library/**/*.wmv
+asset_library/**/*.csv
 
 # Character source media and generated triage outputs
 characters/**/*.png
@@ -152,6 +167,9 @@ model_tests/*
 !models_research/
 !models_research/**/
 !models_research/**/.gitkeep
+!asset_library/
+!asset_library/**/
+!asset_library/**/.gitkeep
 
 # Workflows are source assets and should be tracked.
 workflows/*
