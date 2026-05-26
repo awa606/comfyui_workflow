@@ -21,6 +21,35 @@ body_refs/
 pose_refs/
 datasets/
 model_tests/
+models_research/**/*.png
+models_research/**/*.jpg
+models_research/**/*.jpeg
+models_research/**/*.webp
+models_research/**/*.bmp
+models_research/**/*.tif
+models_research/**/*.tiff
+models_research/**/*.mp4
+models_research/**/*.mov
+models_research/**/*.avi
+models_research/**/*.mkv
+models_research/**/*.webm
+models_research/**/*.m4v
+models_research/**/*.wmv
+models_research/**/*.obj
+models_research/**/*.mtl
+models_research/**/*.glb
+models_research/**/*.gltf
+models_research/**/*.fbx
+models_research/**/*.ply
+models_research/**/*.stl
+models_research/**/*.blend
+models_research/**/*.npy
+models_research/**/*.npz
+models_research/**/*.csv
+models_research/**/*.json
+models_research/**/*.zip
+models_research/**/*.tar
+models_research/**/*.tar.gz
 
 # Character source media and generated triage outputs
 characters/**/*.png
@@ -112,6 +141,9 @@ datasets/linwei/metadata/*
 !model_tests/
 model_tests/*
 !model_tests/.gitkeep
+!models_research/
+!models_research/**/
+!models_research/**/.gitkeep
 
 # Workflows are source assets and should be tracked.
 workflows/*
