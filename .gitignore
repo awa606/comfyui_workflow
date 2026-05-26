@@ -8,6 +8,7 @@ __pycache__/
 *.pt
 *.pth
 *.bin
+*.onnx
 
 # Raw/private/generated project data
 outputs/
@@ -18,6 +19,28 @@ video_inputs/
 character_refs/
 body_refs/
 pose_refs/
+datasets/
+model_tests/
+
+# Character source media and generated triage outputs
+characters/**/*.png
+characters/**/*.jpg
+characters/**/*.jpeg
+characters/**/*.webp
+characters/**/*.bmp
+characters/**/*.tif
+characters/**/*.tiff
+characters/**/*.mp4
+characters/**/*.mov
+characters/**/*.avi
+characters/**/*.mkv
+characters/**/*.webm
+characters/**/*.m4v
+characters/**/*.wmv
+characters/**/metadata/*.csv
+!characters/
+!characters/**/
+!characters/**/.gitkeep
 
 # Keep empty directory placeholders
 !outputs/.gitkeep
@@ -28,6 +51,67 @@ pose_refs/
 !character_refs/.gitkeep
 !body_refs/.gitkeep
 !pose_refs/.gitkeep
+!datasets/
+datasets/*
+!datasets/linwei_character_raw/
+datasets/linwei_character_raw/*
+!datasets/linwei_character_raw/.gitkeep
+!datasets/linwei_character_selected/
+datasets/linwei_character_selected/*
+!datasets/linwei_character_selected/.gitkeep
+!datasets/linwei_character_captions/
+datasets/linwei_character_captions/*
+!datasets/linwei_character_captions/.gitkeep
+!datasets/linwei/
+datasets/linwei/*
+!datasets/linwei/raw_images/
+datasets/linwei/raw_images/*
+!datasets/linwei/raw_images/.gitkeep
+!datasets/linwei/raw_videos/
+datasets/linwei/raw_videos/*
+!datasets/linwei/raw_videos/.gitkeep
+!datasets/linwei/extracted_frames/
+datasets/linwei/extracted_frames/*
+!datasets/linwei/extracted_frames/.gitkeep
+!datasets/linwei/selected_identity_faces/
+datasets/linwei/selected_identity_faces/*
+!datasets/linwei/selected_identity_faces/.gitkeep
+!datasets/linwei/selected_upper_body/
+datasets/linwei/selected_upper_body/*
+!datasets/linwei/selected_upper_body/.gitkeep
+!datasets/linwei/selected_full_body/
+datasets/linwei/selected_full_body/*
+!datasets/linwei/selected_full_body/.gitkeep
+!datasets/linwei/outfit_refs/
+datasets/linwei/outfit_refs/*
+!datasets/linwei/outfit_refs/.gitkeep
+!datasets/linwei/hairstyle_refs/
+datasets/linwei/hairstyle_refs/*
+!datasets/linwei/hairstyle_refs/.gitkeep
+!datasets/linwei/makeup_refs/
+datasets/linwei/makeup_refs/*
+!datasets/linwei/makeup_refs/.gitkeep
+!datasets/linwei/shoes_accessories/
+datasets/linwei/shoes_accessories/*
+!datasets/linwei/shoes_accessories/.gitkeep
+!datasets/linwei/pose_refs/
+datasets/linwei/pose_refs/*
+!datasets/linwei/pose_refs/.gitkeep
+!datasets/linwei/scene_refs/
+datasets/linwei/scene_refs/*
+!datasets/linwei/scene_refs/.gitkeep
+!datasets/linwei/rejected/
+datasets/linwei/rejected/*
+!datasets/linwei/rejected/.gitkeep
+!datasets/linwei/captions/
+datasets/linwei/captions/*
+!datasets/linwei/captions/.gitkeep
+!datasets/linwei/metadata/
+datasets/linwei/metadata/*
+!datasets/linwei/metadata/.gitkeep
+!model_tests/
+model_tests/*
+!model_tests/.gitkeep
 
 # Workflows are source assets and should be tracked.
 workflows/*
