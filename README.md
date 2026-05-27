@@ -70,8 +70,8 @@ D:\sd.webui\ComfyUI\venv\Scripts\python.exe scripts\make_contact_sheet.py --refs
 
 ## 重要文档
 
-- `docs/models_required.md`：当前已有模型与缺失模型清单。
-- `docs/troubleshooting_comfyui.md`：ComfyUI 当前启动状态和常见排查。
+- `docs/03_model_strategy/models_required.md`：当前已有模型与缺失模型清单。
+- `docs/00_project_overview/troubleshooting_comfyui.md`：ComfyUI 当前启动状态和常见排查。
 - `workflows/README.md`：工作流目录约定。
 
 ## 上传规则

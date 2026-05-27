@@ -54,13 +54,13 @@ GitHub 仓库：
 
 保存项目规划、边界、模型路线、素材规范和阶段报告。当前已有约 30 个文档，重要文档包括：
 
-- `docs/current_stage_report.md`：当前阶段总报告。
-- `docs/p0_asset_pipeline_report.md`：P0 管线运行报告。
-- `docs/project_state.md`：项目状态对齐文档。
-- `docs/asset_triage_pipeline.md`：素材分诊流程。
-- `docs/model_upgrade_strategy.md`：P0/P1/P2 模型升级路线。
-- `docs/safety_and_scope_boundary.md`：安全与范围边界。
-- `docs/lora_training_decision.md`：LoRA 训练决策模板。
+- `docs/00_project_overview/current_stage_report.md`：当前阶段总报告。
+- `docs/01_p0_asset_pipeline/p0_asset_pipeline_report.md`：P0 管线运行报告。
+- `docs/00_project_overview/project_state.md`：项目状态对齐文档。
+- `docs/01_p0_asset_pipeline/asset_triage_pipeline.md`：素材分诊流程。
+- `docs/03_model_strategy/model_upgrade_strategy.md`：P0/P1/P2 模型升级路线。
+- `docs/99_safety_scope/safety_and_scope_boundary.md`：安全与范围边界。
+- `docs/04_lora_strategy/lora_training_decision.md`：LoRA 训练决策模板。
 
 ### `scripts/`
 
@@ -248,4 +248,3 @@ python scripts\build_master_asset_index.py
 - ComfyUI/A1111 核心代码改动
 
 当前 `.gitignore` 已保护 `metadata/*`、`outputs/*`、`characters/**/*.jpg`、`asset_library/**/*.jpg`、模型文件等生成物和大文件。
-

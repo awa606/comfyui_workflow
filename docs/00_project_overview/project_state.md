@@ -68,7 +68,7 @@ role_001 素材目录 -> 图片/视频导入 -> 视频抽帧 -> 人工筛选 -> 
 3. 运行 `python scripts/extract_keyframes_role.py --role role_001 --fps 1`。
 4. 用户人工筛选到 `identity_faces`、`upper_body`、`full_body`、`outfits`、`pose_refs`、`rejected` 等目录。
 5. 运行 `python scripts/build_role_manifest.py --role role_001`。
-6. 根据 manifest 更新 `docs/role_001_material_review.md`。
+6. 根据 manifest 更新 `docs/01_p0_asset_pipeline/role_001_material_review.md`。
 7. 素材达标后再进入 FaceID / IPAdapter 测试批次。
 
 如果素材仍集中在 `D:\sd.webui\train_material` 和 `D:\sd.webui\douyin_download`，优先使用 `scripts/triage_douyin_assets.py` 做本地分诊：

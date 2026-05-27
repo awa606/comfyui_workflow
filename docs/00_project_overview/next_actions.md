@@ -40,7 +40,7 @@
 - 先用在线 Space 看输出是否值得继续。
 - 如果模型很小，再考虑本地脚本验证。
 - 如果模型很大，先记录显存、依赖和替代方案。
-- 每次测试都填入 `docs/model_evaluation_matrix.md` 中的字段。
+- 每次测试都填入 `docs/03_model_strategy/model_evaluation_matrix.md` 中的字段。
 
 ## 5. 暂定验证顺序
 

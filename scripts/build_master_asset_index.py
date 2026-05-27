@@ -211,7 +211,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--faces", default=str(METADATA_DIR / "face_index.csv"))
     parser.add_argument("--clusters", default=str(METADATA_DIR / "face_clusters.csv"))
     parser.add_argument("--output", default=str(METADATA_DIR / "master_asset_index.csv"))
-    parser.add_argument("--report", default="docs/p0_asset_pipeline_report.md")
+    parser.add_argument("--report", default="docs/01_p0_asset_pipeline/p0_asset_pipeline_report.md")
     return parser
 
 

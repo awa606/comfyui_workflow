@@ -36,12 +36,12 @@ Do not assume the project has entered:
 
 When the user asks about project state or next work, read these repo files first:
 
-- `docs/current_stage_report.md`
-- `docs/p0_asset_pipeline_report.md`
-- `docs/project_state.md`
-- `docs/asset_triage_pipeline.md`
-- `docs/model_upgrade_strategy.md`
-- `docs/safety_and_scope_boundary.md`
+- `docs/00_project_overview/current_stage_report.md`
+- `docs/01_p0_asset_pipeline/p0_asset_pipeline_report.md`
+- `docs/00_project_overview/project_state.md`
+- `docs/01_p0_asset_pipeline/asset_triage_pipeline.md`
+- `docs/03_model_strategy/model_upgrade_strategy.md`
+- `docs/99_safety_scope/safety_and_scope_boundary.md`
 
 ## P0 Pipeline Outputs
 
@@ -141,4 +141,3 @@ Before every commit:
 5. Push with `git push origin HEAD`.
 
 Leave unrelated local/untracked files alone.
-
