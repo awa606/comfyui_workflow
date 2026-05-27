@@ -10,9 +10,10 @@ Current phase: P0 asset pipeline validation. The project is organizing and revie
 2. `01_p0_asset_pipeline/p0_asset_pipeline_report.md`
 3. `00_project_overview/project_state.md`
 4. `01_p0_asset_pipeline/asset_triage_pipeline.md`
-5. `03_model_strategy/model_upgrade_strategy.md`
-6. `99_safety_scope/safety_and_scope_boundary.md`
-7. `../skills/comfyui-character-system-context/SKILL.md`
+5. `role_001_review_workflow.md`
+6. `03_model_strategy/model_upgrade_strategy.md`
+7. `99_safety_scope/safety_and_scope_boundary.md`
+8. `../skills/comfyui-character-system-context/SKILL.md`
 
 ## Categories
 
@@ -23,6 +24,10 @@ Project status, roadmap, next actions, Git policy, and ComfyUI troubleshooting n
 ### `01_p0_asset_pipeline/`
 
 P0 material standards, triage pipeline notes, role_001 asset standards, dataset requirements, and P0 run report.
+
+### `role_001_review_workflow.md`
+
+Manual review workflow for contact sheets, `cluster_review.csv`, role_001 candidate export, and the gate for FaceID / IPAdapter testing.
 
 ### `02_character_system/`
 

@@ -40,6 +40,7 @@ When the user asks about project state or next work, read these repo files first
 - `docs/01_p0_asset_pipeline/p0_asset_pipeline_report.md`
 - `docs/00_project_overview/project_state.md`
 - `docs/01_p0_asset_pipeline/asset_triage_pipeline.md`
+- `docs/role_001_review_workflow.md`
 - `docs/03_model_strategy/model_upgrade_strategy.md`
 - `docs/99_safety_scope/safety_and_scope_boundary.md`
 
@@ -54,6 +55,7 @@ Local generated files are not committed:
 - `metadata/face_clusters.csv`
 - `metadata/cluster_review.csv`
 - `metadata/master_asset_index.csv`
+- `metadata/role_001_candidate_export.csv`
 - `metadata/face_embeddings.npz`
 - `outputs/p0_extracted_frames/`
 - `outputs/cluster_contact_sheets/cluster_*.jpg`
@@ -82,6 +84,7 @@ python scripts\filter_duplicates.py --workers 8
 python scripts\run_face_index.py --det-size 160 --max-dim 480
 python scripts\cluster_faces.py --threshold 0.42 --contact-sheet-samples 24
 python scripts\build_master_asset_index.py
+python scripts\export_role_candidates.py --role role_001
 ```
 
 For more complete video sampling later, increase `--max-frames-per-video` or use `0` for uncapped extraction. Do this only when the user explicitly asks, because the source tree has thousands of videos.

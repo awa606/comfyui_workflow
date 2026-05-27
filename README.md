@@ -1,88 +1,114 @@
-# ComfyUI Workflow Comic Project
+# 《基于 ComfyUI 的可控式虚拟角色换装与多体型生成系统》
 
-这个仓库用于管理 ComfyUI 角色一致性漫画分镜生成项目。它只保存工作流、说明文档、脚本和目录结构，不保存大模型、生成图片、输入视频或私人参考图。
+本仓库用于管理基于 ComfyUI 的可控式虚拟角色换装与多体型生成系统。仓库只保存可复用的工作流、脚本、文档、技能说明和空目录占位，不保存素材、生成图、CSV/NPZ 索引结果或模型权重。
+
+## 当前阶段
+
+当前处于 **P0：素材资产化与管线验证阶段**。
+
+本阶段目标是把本地素材源：
+
+- `D:\sd.webui\train_material`
+- `D:\sd.webui\douyin_download`
+
+整理成可人工审核、可确认 `role_001`、可进入 FaceID / IPAdapter 测试的素材索引。
+
+当前不进行：
+
+- LoRA 训练
+- ComfyUI 批量出图
+- 大模型下载
+- DWPose / SAM / GroundingDINO / Depth Anything 集成
+- 最终漫画生产
+- 完整 3D 角色编辑器生产
 
 ## 目录结构
 
-| 目录 | 用途 | 是否上传素材 |
+| 目录 | 用途 | 上传规则 |
 |---|---|---|
-| `workflows` | ComfyUI `.json` 工作流文件 | 只上传 JSON |
-| `scripts` | 项目辅助脚本 | 上传 |
-| `docs` | 模型清单、排错记录、使用说明 | 上传 |
-| `character_refs` | 角色参考图 | 不上传私人图片 |
-| `face_crops` | 人脸裁剪结果 | 不上传生成素材 |
-| `body_refs` | 身体、服装、发型参考图 | 不上传私人图片 |
-| `video_inputs` | 原始视频 | 不上传视频 |
-| `video_frames` | 视频抽帧结果 | 不上传帧图 |
-| `pose_refs` | 姿态参考图 | 不上传私人图片 |
-| `outputs` | ComfyUI 生成结果 | 不上传生成图 |
-| `logs` | 本地运行日志 | 不上传日志 |
+| `characters/role_001` | 第一个样板角色资产目录，包含 raw、抽帧、身份脸、上半身、全身、服装、姿势、候选素材等子目录 | 只提交空目录占位，不提交图片/视频/CSV |
+| `asset_library` | 通用素材库骨架，用于沉淀非 role_001 专属的身份、身体、服装、发型、妆容、腿/鞋、姿势、场景素材 | 只提交空目录占位 |
+| `metadata` | P0 本地生成的索引、manifest、聚类审核表、embedding NPZ | 不提交 CSV/NPZ |
+| `outputs` | 抽帧、cluster contact sheet、FaceID 测试输出、模型测试输出 | 不提交图片/视频 |
+| `models_research` | image-to-3D、depth、pose、face identity、segmentation、image editing 等模型调研目录 | 不提交模型或测试素材 |
+| `scripts` | P0 管线脚本和项目辅助脚本 | 可提交 |
+| `docs` | 项目规划、素材标准、模型路线、审核流程、安全边界 | 可提交 |
+| `skills` | 给 Codex / 网页 ChatGPT 读取的项目上下文 skill | 可提交 |
+| `workflows` | ComfyUI 工作流 JSON | 可提交 JSON，不提交输出图 |
 
-## 运行关系
+## P0 命令
 
-推荐流程：
+在 `D:\sd.webui\comic_project` 下运行：
+
+```powershell
+python scripts\scan_sources.py --skip-hash
+python scripts\extract_video_frames.py --fps 1 --max-frames-per-video 1 --workers 8 --timeout-seconds 8
+python scripts\filter_duplicates.py --workers 8
+python scripts\run_face_index.py --det-size 160 --max-dim 480
+python scripts\cluster_faces.py --threshold 0.42 --contact-sheet-samples 24
+python scripts\build_master_asset_index.py
+```
+
+确认 `metadata/cluster_review.csv` 中的 `user_confirmed_character_id=role_001` 后，导出样板角色候选：
+
+```powershell
+python scripts\export_role_candidates.py --role role_001
+```
+
+默认只输出：
 
 ```text
-video_inputs/input.mp4
-        |
-        | scripts/extract_frames.py
-        v
-video_frames/frame_0001.png ...
-        |
-        | 后续人脸裁剪/姿态提取脚本
-        v
-face_crops / pose_refs
-        |
-        | workflows/*.json
-        v
-ComfyUI 角色一致性漫画分镜生成
-        |
-        v
-outputs/
+metadata/role_001_candidate_export.csv
 ```
 
-## 常用命令
+不会复制或移动原始图片。只有明确需要本地候选目录时，才使用：
 
-从视频每秒抽 1 帧：
-
-```bat
-cd /d D:\sd.webui\comic_project
-D:\sd.webui\ComfyUI\venv\Scripts\python.exe scripts\extract_frames.py --input video_inputs\input.mp4 --output video_frames --fps 1
+```powershell
+python scripts\export_role_candidates.py --role role_001 --copy-mode hardlink
 ```
 
-生成参考图/结果图对比图：
+`hardlink` 只创建硬链接，不移动、不删除原始素材。
 
-```bat
-cd /d D:\sd.webui\comic_project
-D:\sd.webui\ComfyUI\venv\Scripts\python.exe scripts\make_contact_sheet.py --refs character_refs face_crops --generated outputs --output outputs\contact_sheet.png
-```
+## P0 输出
 
-也可以双击根目录的 `run_extract_frames.bat`，它会调用 ComfyUI venv 中的 Python，并在缺少 OpenCV 时尝试自动安装。
+本地 P0 输出包括：
 
-## 当前环境
+- `metadata/source_inventory.csv`
+- `metadata/frame_index.csv`
+- `metadata/duplicate_candidates.csv`
+- `metadata/face_index.csv`
+- `metadata/face_clusters.csv`
+- `metadata/cluster_review.csv`
+- `metadata/master_asset_index.csv`
+- `metadata/role_001_candidate_export.csv`
+- `metadata/face_embeddings.npz`
+- `outputs/p0_extracted_frames/`
+- `outputs/cluster_contact_sheets/cluster_*.jpg`
 
-- ComfyUI 地址：`http://127.0.0.1:8188`
-- ComfyUI 路径：`D:\sd.webui\ComfyUI`
-- A1111 路径：`D:\sd.webui\webui`
-- Python 环境：`D:\sd.webui\ComfyUI\venv\Scripts\python.exe`
-- GPU：`NVIDIA GeForce RTX 5070 Laptop GPU`
-- torch：`2.12.0.dev20260408+cu128`
+这些都是本地审核产物，不提交到 GitHub。
 
 ## 重要文档
 
-- `docs/03_model_strategy/models_required.md`：当前已有模型与缺失模型清单。
-- `docs/00_project_overview/troubleshooting_comfyui.md`：ComfyUI 当前启动状态和常见排查。
-- `workflows/README.md`：工作流目录约定。
+- `docs/README.md`：文档分类入口。
+- `docs/00_project_overview/current_stage_report.md`：当前阶段总报告。
+- `docs/01_p0_asset_pipeline/p0_asset_pipeline_report.md`：P0 管线报告。
+- `docs/01_p0_asset_pipeline/asset_triage_pipeline.md`：素材分诊流程。
+- `docs/03_model_strategy/model_upgrade_strategy.md`：P0/P1/P2 模型升级路线。
+- `docs/99_safety_scope/safety_and_scope_boundary.md`：安全与范围边界。
+- `docs/role_001_review_workflow.md`：role_001 聚类审核和候选导出流程。
+- `skills/comfyui-character-system-context/SKILL.md`：给 Codex / 网页 ChatGPT 对齐项目状态的上下文 skill。
 
 ## 上传规则
 
-不要提交这些内容：
+不要提交：
 
-- `.safetensors`、`.ckpt`、`.pt`、`.pth`、`.bin` 模型文件
-- 原始视频
-- 抽帧图片
-- 私人角色参考图
-- 生成结果图
-- 本地日志
+- 图片：`.png`, `.jpg`, `.jpeg`, `.webp`, `.bmp`, `.tif`, `.tiff`
+- 视频：`.mp4`, `.mov`, `.avi`, `.mkv`, `.webm`, `.m4v`, `.wmv`
+- CSV/NPZ：`metadata/*.csv`, `metadata/*.npz`, `characters/**/metadata/*.csv`
+- 模型文件：`.safetensors`, `.ckpt`, `.pt`, `.pth`, `.bin`, `.onnx`
+- ComfyUI 输出图
+- 抽帧结果
+- contact sheet
+- 本地日志和缓存
 
-仓库只保存可复用的工作流 JSON、脚本和文档。
+仓库只保存可复用的文档、脚本、工作流 JSON、参数说明、skill 和空目录占位。
