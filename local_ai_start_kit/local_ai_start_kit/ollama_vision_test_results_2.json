@@ -1,0 +1,39 @@
+[
+  {
+    "model": "qwen3-vl:4b",
+    "seconds": 25.19,
+    "raw": "{\n  \"can_see_image\": true,\n  \"style_summary_zh\": \"柔和自然的写实风格，突出人物柔美气质与细腻光影\",\n  \"medium\": [\"数码摄影\", \"写实风格\"],\n  \"composition\": [\"中景构图\", \"平视角度\", \"自然光运用\"],\n  \"linework\": [\"柔和的轮廓线\", \"自然流畅的线条\"],\n  \"color_lighting\": [\"柔和的粉色调\", \"自然光照明\", \"低对比度光影\"],\n  \"texture\": [\"细腻的数码质感\", \"无明显颗粒感\"],\n  \"subject_vs_style\": {\n    \"content_specific\": [\"粉色针织开衫\", \"吊带短上衣\", \"牛仔短裤\", \"窗边室内场景\", \"抖音号水印\"],\n    \"style_transferable\": [\"柔和粉色调\", \"自然光照明\", \"中景构图\", \"人物自然姿态\"]\n  },\n  \"sdxl_positive\": [\"soft lighting, natural pose, pastel colors, casual outfit, indoor setting, high detail, realistic photography\"],\n  \"sdxl_negative\": [\"blurry, distorted, low quality, text, watermark\"],\n  \"flux_positive_controls\": [\"soft lighting, natural pose, pastel colors, casual outfit, indoor setting, high detail, realistic photography\"],\n  \"score_for_style_extraction\": 8\n}"
+  },
+  {
+    "model": "qwen3-vl:8b",
+    "seconds": 43.65,
+    "raw": "{\n  \"can_see_image\": true,\n  \"style_summary_zh\": \"柔和自然的写实摄影风格，融合日系清新感与细腻质感\",\n  \"medium\": [\"摄影\"],\n  \"composition\": [\"中景构图，人物侧身站立于窗边，平视角度突出自然姿态\"],\n  \"linework\": [\"自然柔和的轮廓线条，无明显笔触，光影过渡细腻\"],\n  \"color_lighting\": [\"柔和粉色调为主，自然光营造均匀通透的光影层次\"],\n  \"texture\": [\"细腻的皮肤质感，轻微胶片颗粒感，针织面料纹理清晰\"],\n  \"subject_vs_style\": {\n    \"content_specific\": [\"抖音号nyu8866，人物撩发姿态，窗边背景中的海报元素\"],\n    \"style_transferable\": [\"柔和色调搭配自然光，写实构图突出人物姿态，细腻质感与胶片感结合\"]\n  },\n  \"sdxl_positive\": [\"realistic photo, soft natural lighting, pink knitted cardigan, denim shorts, delicate skin texture, window light, natural pose\"],\n  \"sdxl_negative\": [\"blurry, low quality, cartoon, anime, bad anatomy\"],\n  \"flux_positive_controls\": [\"realistic, soft lighting, natural pose, window light, delicate skin\"],\n  \"score_for_style_extraction\": 0\n}"
+  },
+  {
+    "model": "qwen2.5vl:7b",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=240)"
+  },
+  {
+    "model": "openbmb/minicpm-v4.6",
+    "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/chat"
+  },
+  {
+    "model": "blaifa/InternVL3_5:8b",
+    "seconds": 21.77,
+    "raw": "{\n  \"can_see_image\": true,\n  \"style_summary_zh\": \"柔和的自然光与时尚穿搭\",\n  \"medium\": [\"摄影\"],\n  \"composition\": [\"人像特写\", \"三分法构图\"],\n  \"linework\": [\"无明显线条\"],\n  \"color_lighting\": [\"柔和色调\", \"自然光\"],\n  \"texture\": [\"光滑质感\", \"胶片感\"],\n  \"subject_vs_style\": {\n    \"content_specific\": [\"模特穿搭\", \"室内环境\"],\n    \"style_transferable\": [\"柔和色调\", \"自然光影\"]\n  },\n  \"sdxl_positive\": [\"Soft natural lighting\", \"Fashion photography\", \"Portrait close-up\"],\n  \"sdxl_negative\": [\"Harsh shadows\", \"High contrast\", \"Vivid colors\"],\n  \"flux_positive_controls\": [\"Soft lighting\", \"Natural tones\", \"Smooth texture\"],\n  \"score_for_style_extraction\": 8\n}"
+  },
+  {
+    "model": "llama3.2-vision:11b",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=240)"
+  },
+  {
+    "model": "gemma4:e2b",
+    "seconds": 62.37,
+    "raw": "```json\n{\n  \"can_see_image\": true,\n  \"style_summary_zh\": \"柔和的自然光下的时尚肖像摄影，强调柔和的色彩和细腻的质感。\",\n  \"medium\": [\n    \"摄影\",\n    \"数字艺术渲染\"\n  ],\n  \"composition\": [\n    \"特写肖像\",\n    \"垂直构图\",\n    \"人物占据画面主体\"\n  ],\n  \"linework\": [\n    \"柔和的轮廓\",\n    \"细腻的细节\",\n    \"无生硬的线条\"\n  ],\n  \"color_lighting\": [\n    \"自然光\",\n    \"柔和的散射光\",\n    \"温暖的色调\"\n  ],\n  \"texture\": [\n    \"柔软的针织纹理\",\n    \"光滑的皮肤\",\n    \"柔和的氛围感\"\n  ],\n  \"subject_vs_style\": {\n    \"content_specific\": [\n      \"粉色针织衫\",\n      \"长发\",\n      \"窗边光线\"\n    ],\n    \"style_transferable\": [\n      \"柔光摄影\",\n      \"时尚肖像\",\n      \"自然光氛围\",\n      \"高细节纹理\"\n    ]\n  },\n  \"sdxl_positive\": [\n    \"masterpiece\",\n    \"photorealistic\",\n    \"soft focus\",\n    \"cinematic lighting\",\n    \"detailed skin texture\",\n    \"soft fabric texture\",\n    \"natural light\",\n    \"fashion portrait\",\n    \"high quality\"\n  ],\n  \"sdxl_negative\": [\n    \"low quality\",\n    \"deformed\",\n    \"ugly\",\n    \"harsh shadows\",\n    \"grainy\",\n    \"oversaturated\",\n    \"poor composition\"\n  ],\n  \"flux_positive_controls\": [\n    \"soft lighting\",\n    \"detailed texture\",\n    \"cinematic color grading\",\n    \"fashion photography\"\n  ],\n  \"score_for_style_extraction\": 9\n}\n```"
+  },
+  {
+    "model": "gemma4:e4b-it-q4_K_M",
+    "seconds": 125.97,
+    "raw": "```json\n{\n  \"can_see_image\": true,\n  \"style_summary_zh\": \"一张以自然光为主要光源，采用柔和色调和生活化场景的女性肖像照，整体风格清新、温柔、文艺。\",\n  \"medium\": [\n    \"摄影\",\n    \"胶片摄影\",\n    \"数码摄影\"\n  ],\n  \"composition\": [\n    \"中景肖像\",\n    \"自然构图\",\n    \"景深虚化（Bokeh）\",\n    \"三分法\"\n  ],\n  \"linework\": [\n    \"柔和的轮廓线\",\n    \"自然流畅的线条\",\n    \"强调材质的细节描绘\"\n  ],\n  \"color_lighting\": [\n    \"柔和的自然光（Soft Daylight）\",\n    \"高光柔和，阴影过渡平滑\",\n    \"低对比度\",\n    \"马卡龙色系/柔和的粉彩调（Pastel Palette）\"\n  ],\n  \"texture\": [\n    \"针织面料的纹理\",\n    \"牛仔布的粗粝感\",\n    \"皮肤的细腻感\",\n    \"轻微的胶片颗粒感（Film Grain）\"\n  ],\n  \"subject_vs_style\": {\n    \"content_specific\": [\n      \"穿着针织开衫和吊带的休闲穿搭\",\n      \"在窗边拍摄的室内场景\"\n    ],\n    \"style_transferable\": [\n      \"使用柔和自然光进行人像拍摄\",\n      \"采用低饱和度的清新色调\",\n      \"营造生活化、慵懒的氛围感\"\n    ]\n  },\n  \"sdxl_positive\": [\n    \"soft portrait\",\n    \"natural daylight\",\n    \"pastel color palette\",\n    \"knitted cardigan\",\n    \"denim shorts\",\n    \"bokeh background\",\n    \"cinematic lighting\",\n    \"high detail\",\n    \"aesthetic lifestyle photography\"\n  ],\n  \"sdxl_negative\": [\n    \"harsh shadows\",\n    \"oversaturated\",\n    \"low quality\",\n    \"ugly\",\n    \"deformed\",\n    \"poorly drawn\",\n    \"too dark\"\n  ],\n  \"flux_positive_controls\": [\n    \"soft focus\",\n    \"natural light\",\n    \"pastel aesthetic\",\n    \"candid moment\",\n    \"gentle mood\"\n  ],\n  \"score_for_style_extraction\": 0.9\n}\n```"
+  }
+]
