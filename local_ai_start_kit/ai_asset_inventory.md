@@ -1,20 +1,22 @@
 # AI Asset Inventory
 
-Generated: 2026-05-28 15:57:50
+Generated: 2026-05-28 17:23:13
 
 | Type | Name | Size GB | Modified | Path |
 |---|---:|---:|---|---|
+| VAE | sdxl_vae.safetensors | 0.312 | 2026-05-28 11:00:28 | $safePath |
+| VAE | qwen_image_vae.safetensors | 0.236 | 2026-05-24 20:31:38 | $safePath |
 | Unknown | yolov8x.onnx | 0.254 | 2024-03-14 11:40:32 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2024-12-13 20:30:22 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2025-12-08 23:46:03 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2025-12-09 09:08:34 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2024-12-10 20:18:00 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2024-12-10 15:54:18 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2024-12-23 21:06:57 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2024-12-23 21:32:03 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2024-12-10 20:18:00 | $safePath |
-| Unknown | yolov8n.pt | 0.006 | 2024-12-10 15:54:18 | $safePath |
 | Unknown | yolov8n.pt | 0.006 | 2025-12-09 00:39:17 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2024-12-23 21:32:03 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2024-12-23 21:06:57 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2024-12-10 20:18:00 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2025-12-08 23:46:03 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2024-12-13 20:30:22 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2024-12-10 15:54:18 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2024-12-10 20:18:00 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2025-12-09 09:08:34 | $safePath |
+| Unknown | yolov8n.pt | 0.006 | 2024-12-10 15:54:18 | $safePath |
 | Unknown | yolo11n.pt | 0.005 | 2025-05-08 21:29:45 | $safePath |
 | Unknown | yolo11m.pt | 0.038 | 2025-05-09 02:57:55 | $safePath |
 | Unknown | Ycbsq_bootloader(1).bin | 0 | 2025-08-26 11:13:09 | $safePath |
@@ -120,10 +122,10 @@ Generated: 2026-05-28 15:57:50
 | Unknown | stm32wLoader.bin | 0 | 2015-07-08 17:26:46 | $safePath |
 | Unknown | stm32l15xLoader.bin | 0 | 2015-07-08 17:26:44 | $safePath |
 | Unknown | stm32l15xLoader.bin | 0 | 2015-07-08 17:26:44 | $safePath |
-| Unknown | STM32F429I_DISCO_HelloWorld.bin | 0 | 2023-11-01 21:37:41 | $safePath |
 | Unknown | STM32F429I_DISCO_HelloWorld.bin | 0 | 2024-05-31 20:29:59 | $safePath |
-| Unknown | STM32F429I_DISCO_GPIO_EXTI.bin | 0 | 2023-11-01 21:37:41 | $safePath |
+| Unknown | STM32F429I_DISCO_HelloWorld.bin | 0 | 2023-11-01 21:37:41 | $safePath |
 | Unknown | STM32F429I_DISCO_GPIO_EXTI.bin | 0 | 2024-05-31 20:29:59 | $safePath |
+| Unknown | STM32F429I_DISCO_GPIO_EXTI.bin | 0 | 2023-11-01 21:37:41 | $safePath |
 | Unknown | stm32F20xLoader.bin | 0 | 2015-07-08 17:26:46 | $safePath |
 | Unknown | stm32F20xLoader.bin | 0 | 2015-07-08 17:26:46 | $safePath |
 | Unknown | stm32f10xLoader.bin | 0 | 2015-07-08 17:26:46 | $safePath |
@@ -132,16 +134,16 @@ Generated: 2026-05-28 15:57:50
 | Unknown | stm32f10xGLoader.bin | 0 | 2015-07-08 17:26:46 | $safePath |
 | Unknown | STM324xG_EVAL_USBH_MSC_HS.bin | 0 | 2023-11-01 21:37:26 | $safePath |
 | Unknown | STM324xG_EVAL_USBH_MSC_HS.bin | 0 | 2024-05-31 20:29:43 | $safePath |
-| Unknown | STM324xG_EVAL_USBH_MSC_FS.bin | 0 | 2024-05-31 20:29:43 | $safePath |
 | Unknown | STM324xG_EVAL_USBH_MSC_FS.bin | 0 | 2023-11-01 21:37:26 | $safePath |
+| Unknown | STM324xG_EVAL_USBH_MSC_FS.bin | 0 | 2024-05-31 20:29:43 | $safePath |
 | Unknown | STM324xG_EVAL_SysTick.bin | 0 | 2023-11-01 21:37:26 | $safePath |
-| Unknown | STM324xG_EVAL_SysTick.bin | 0 | 2024-05-31 20:29:43 | $safePath |
 | Unknown | STM324xG_EVAL_SysTick.bin | 0 | 2023-11-01 21:37:26 | $safePath |
 | Unknown | STM324xG_EVAL_SysTick.bin | 0 | 2024-05-31 20:29:42 | $safePath |
+| Unknown | STM324xG_EVAL_SysTick.bin | 0 | 2024-05-31 20:29:43 | $safePath |
 | Unknown | STM324xG_EVAL_HTTP_Server.bin | 0 | 2024-05-31 20:29:42 | $safePath |
 | Unknown | STM324xG_EVAL_HTTP_Server.bin | 0 | 2023-11-01 21:37:26 | $safePath |
-| Unknown | STM324x9I_EVAL_USBH_MSC_HS.bin | 0 | 2023-11-01 21:37:20 | $safePath |
 | Unknown | STM324x9I_EVAL_USBH_MSC_HS.bin | 0 | 2024-05-31 20:29:37 | $safePath |
+| Unknown | STM324x9I_EVAL_USBH_MSC_HS.bin | 0 | 2023-11-01 21:37:20 | $safePath |
 | Unknown | STM324x9I_EVAL_USBH_MSC_FS.bin | 0 | 2024-05-31 20:29:37 | $safePath |
 | Unknown | STM324x9I_EVAL_USBH_MSC_FS.bin | 0 | 2023-11-01 21:37:20 | $safePath |
 | Unknown | STM324x9I_EVAL_Systick.bin | 0 | 2023-11-01 21:37:19 | $safePath |
@@ -158,15 +160,13 @@ Generated: 2026-05-28 15:57:50
 | Unknown | snapshot_blob.bin | 0 | 2019-10-04 03:36:46 | $safePath |
 | Unknown | sigmoid.onnx | 0 | 2024-10-19 12:55:49 | $safePath |
 | Unknown | shaky_car.bin | 0.009 | 2010-08-25 13:06:19 | $safePath |
-| Unknown | sdxl_vae.safetensors | 0.312 | 2026-05-28 11:00:28 | $safePath |
 | Unknown | router_adv.bin | 0 | 2023-11-01 21:40:09 | $safePath |
-| Unknown | ratatatat74_pony_v2.safetensors | 0.066 | 2026-05-28 15:26:41 | $safePath |
+| Unknown | qwen_image_edit_2509_fp8_e4m3fn.safetensors | 19.028 | 2026-05-24 21:54:22 | $safePath |
+| Unknown | qwen_2.5_vl_7b_fp8_scaled.safetensors | 8.74 | 2026-05-24 21:05:10 | $safePath |
 | Unknown | pywin32.pth | 0 | 2024-10-31 11:35:28 | $safePath |
 | Unknown | Project.bin | 0 | 2011-04-18 13:19:22 | $safePath |
-| Unknown | PONYXL_STYLE_Gagala_ownwaifu.safetensors | 0.213 | 2026-05-28 15:27:55 | $safePath |
-| Unknown | ponyDiffusionV6XL_v6StartWithThisOne.safetensors | 6.462 | 2026-05-23 15:38:40 | $safePath |
-| Unknown | pc_settings.bin | 0 | 2026-04-14 13:56:51 | $safePath |
 | Unknown | pc_settings.bin | 0 | 2025-04-02 11:13:19 | $safePath |
+| Unknown | pc_settings.bin | 0 | 2026-04-14 13:56:51 | $safePath |
 | Unknown | origindata6.bin | 0 | 2020-01-17 00:00:00 | $safePath |
 | Unknown | origindata5.bin | 0 | 2020-01-19 21:06:46 | $safePath |
 | Unknown | origindata4.bin | 0 | 2017-01-30 17:54:22 | $safePath |
@@ -190,10 +190,10 @@ Generated: 2026-05-28 15:57:50
 | Unknown | layout.bin | 0 | 2024-04-01 23:36:31 | $safePath |
 | Unknown | layout.bin | 0 | 2020-10-27 04:57:06 | $safePath |
 | Unknown | last.pt | 0.018 | 2025-12-09 00:36:47 | $safePath |
-| Unknown | last.pt | 0.006 | 2025-12-09 01:26:26 | $safePath |
+| Unknown | last.pt | 0.006 | 2025-05-08 16:55:24 | $safePath |
 | Unknown | last.pt | 0.006 | 2025-12-09 00:24:21 | $safePath |
 | Unknown | last.pt | 0.006 | 2025-05-08 21:15:00 | $safePath |
-| Unknown | last.pt | 0.006 | 2025-05-08 16:55:24 | $safePath |
+| Unknown | last.pt | 0.006 | 2025-12-09 01:26:26 | $safePath |
 | Unknown | last.pt | 0.005 | 2025-05-09 18:49:51 | $safePath |
 | Unknown | last.pt | 0.005 | 2025-05-09 00:29:51 | $safePath |
 | Unknown | Keyboard-fw-offset-V1.5.bin | 0 | 2022-11-23 15:55:48 | $safePath |
@@ -205,24 +205,22 @@ Generated: 2026-05-28 15:57:50
 | Unknown | jgaurora_bootloader.bin | 0 | 2023-03-18 11:28:37 | $safePath |
 | Unknown | icmp_ping.bin | 0 | 2023-11-01 21:40:09 | $safePath |
 | Unknown | HighlightCache_WW_10952754293771347805.bin | 0 | 2025-01-28 22:50:27 | $safePath |
-| Unknown | HelloWord-Keyboard-fw.bin | 0 | 2022-09-27 21:48:24 | $safePath |
-| Unknown | HelloWord-Keyboard-fw.bin | 0 | 2025-03-04 18:29:09 | $safePath |
 | Unknown | HelloWord-Keyboard-fw.bin | 0 | 2024-05-06 10:25:30 | $safePath |
+| Unknown | HelloWord-Keyboard-fw.bin | 0 | 2022-09-27 21:48:24 | $safePath |
 | Unknown | HelloWord-Keyboard-fw.bin | 0 | 2025-01-17 10:20:42 | $safePath |
+| Unknown | HelloWord-Keyboard-fw.bin | 0 | 2025-03-04 18:29:09 | $safePath |
 | Unknown | HelloWord-Dynamic-fw.bin | 0 | 2024-05-06 10:25:30 | $safePath |
 | Unknown | HelloWord-Dynamic-fw.bin | 0 | 2022-10-08 15:09:18 | $safePath |
-| Unknown | Haoni-P4v3-PDXL.safetensors | 0.097 | 2026-05-28 15:27:10 | $safePath |
-| Unknown | Haoni-P4v3-PDXL (1).safetensors | 0.097 | 2026-05-28 15:27:18 | $safePath |
 | Unknown | GU_ENC_V0.31.bin | 0 | 2023-12-01 09:58:40 | $safePath |
 | Unknown | gr5526_smart_watch.bin | 0.001 | 2024-03-13 11:23:42 | $safePath |
-| Unknown | FLASH_DualBoot.bin | 0 | 2024-05-31 20:29:40 | $safePath |
 | Unknown | FLASH_DualBoot.bin | 0 | 2023-11-01 21:37:23 | $safePath |
-| Unknown | distutils-precedence.pth | 0 | 2024-09-11 14:01:28 | $safePath |
-| Unknown | distutils-precedence.pth | 0 | 2026-05-10 17:11:44 | $safePath |
-| Unknown | distutils-precedence.pth | 0 | 2025-12-23 09:38:55 | $safePath |
+| Unknown | FLASH_DualBoot.bin | 0 | 2024-05-31 20:29:40 | $safePath |
 | Unknown | distutils-precedence.pth | 0 | 2025-12-23 09:41:41 | $safePath |
-| Unknown | distutils-precedence.pth | 0 | 2026-04-28 11:35:45 | $safePath |
+| Unknown | distutils-precedence.pth | 0 | 2025-12-23 09:38:55 | $safePath |
+| Unknown | distutils-precedence.pth | 0 | 2024-09-11 14:01:28 | $safePath |
 | Unknown | distutils-precedence.pth | 0 | 2024-10-19 12:49:05 | $safePath |
+| Unknown | distutils-precedence.pth | 0 | 2026-04-28 11:35:45 | $safePath |
+| Unknown | distutils-precedence.pth | 0 | 2026-05-10 17:11:44 | $safePath |
 | Unknown | direct_test_mode.bin | 0 | 2023-07-12 14:07:12 | $safePath |
 | Unknown | dfu_master.bin | 0 | 2023-07-12 14:06:42 | $safePath |
 | Unknown | def_b64_ff.bin | 0 | 2023-07-11 12:00:56 | $safePath |
@@ -267,26 +265,26 @@ Generated: 2026-05-28 15:57:50
 | Unknown | cogwheel.A1.bin | 0 | 2024-03-12 13:37:32 | $safePath |
 | Unknown | cogwheel.A1.bin | 0 | 2024-03-12 13:37:32 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_CXX.bin | 0 | 2022-09-27 11:38:51 | $safePath |
+| Unknown | CMakeDetermineCompilerABI_CXX.bin | 0 | 2022-10-08 15:08:18 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_CXX.bin | 0 | 2025-01-22 11:29:14 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_CXX.bin | 0 | 2024-05-30 15:35:24 | $safePath |
-| Unknown | CMakeDetermineCompilerABI_CXX.bin | 0 | 2022-10-08 15:08:18 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_CXX.bin | 0 | 2025-01-19 10:11:38 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_C.bin | 0 | 2025-01-19 10:11:37 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_C.bin | 0 | 2022-10-08 15:08:15 | $safePath |
-| Unknown | CMakeDetermineCompilerABI_C.bin | 0 | 2024-05-30 15:35:24 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_C.bin | 0 | 2022-09-27 11:38:50 | $safePath |
 | Unknown | CMakeDetermineCompilerABI_C.bin | 0 | 2025-01-22 11:29:12 | $safePath |
+| Unknown | CMakeDetermineCompilerABI_C.bin | 0 | 2024-05-30 15:35:24 | $safePath |
+| Unknown | ble_app_uart.bin | 0 | 2023-07-12 14:05:26 | $safePath |
 | Unknown | ble_app_uart.bin | 0 | 2023-07-12 14:05:26 | $safePath |
 | Unknown | ble_app_uart.bin | 0 | 2024-03-14 12:51:22 | $safePath |
-| Unknown | ble_app_uart.bin | 0 | 2023-07-12 14:05:26 | $safePath |
 | Unknown | ble_app_uart_c.bin | 0 | 2023-07-12 13:51:44 | $safePath |
 | Unknown | ble_app_uart_at.bin | 0 | 2024-03-27 09:37:54 | $safePath |
 | Unknown | ble_app_uart_at.bin | 0 | 2023-07-12 13:52:58 | $safePath |
 | Unknown | ble_app_throughput.bin | 0 | 2023-07-12 14:04:50 | $safePath |
 | Unknown | ble_app_throughput_c.bin | 0 | 2023-07-12 13:51:10 | $safePath |
+| Unknown | ble_app_template.bin | 0 | 2023-07-12 14:02:14 | $safePath |
+| Unknown | ble_app_template.bin | 0 | 2023-07-12 14:02:14 | $safePath |
 | Unknown | ble_app_template.bin | 0 | 2024-03-09 17:07:04 | $safePath |
-| Unknown | ble_app_template.bin | 0 | 2023-07-12 14:02:14 | $safePath |
-| Unknown | ble_app_template.bin | 0 | 2023-07-12 14:02:14 | $safePath |
 | Unknown | ble_app_template_lite.bin | 0 | 2023-07-12 14:04:08 | $safePath |
 | Unknown | ble_app_template_freertos.bin | 0 | 2023-07-12 14:03:44 | $safePath |
 | Unknown | ble_app_template_freertos.bin | 0 | 2024-03-27 09:08:34 | $safePath |
@@ -313,26 +311,26 @@ Generated: 2026-05-28 15:57:50
 | Unknown | ble_app_ancs_c.bin | 0 | 2023-07-12 13:54:10 | $safePath |
 | Unknown | ble_app_ams_c.bin | 0 | 2023-07-12 13:53:30 | $safePath |
 | Unknown | best.pt | 0.018 | 2025-12-09 00:36:47 | $safePath |
-| Unknown | best.pt | 0.006 | 2025-05-08 21:15:00 | $safePath |
-| Unknown | best.pt | 0.006 | 2025-05-08 16:55:24 | $safePath |
-| Unknown | best.pt | 0.006 | 2025-12-09 01:26:26 | $safePath |
 | Unknown | best.pt | 0.006 | 2025-12-09 00:24:22 | $safePath |
+| Unknown | best.pt | 0.006 | 2025-12-09 01:26:26 | $safePath |
+| Unknown | best.pt | 0.006 | 2025-05-08 16:55:24 | $safePath |
+| Unknown | best.pt | 0.006 | 2025-05-08 21:15:00 | $safePath |
+| Unknown | best.pt | 0.005 | 2025-02-14 00:49:26 | $safePath |
 | Unknown | best.pt | 0.005 | 2025-05-09 00:29:51 | $safePath |
 | Unknown | best.pt | 0.005 | 2025-05-09 18:49:51 | $safePath |
-| Unknown | best.pt | 0.005 | 2025-02-14 00:49:26 | $safePath |
 | Unknown | best_cifar10_cnn.pth | 0.003 | 2026-05-06 16:25:04 | $safePath |
-| Unknown | audio.bin | 0 | 2024-05-31 20:29:21 | $safePath |
-| Unknown | audio.bin | 0 | 2023-11-01 21:37:06 | $safePath |
 | Unknown | audio.bin | 0 | 2023-11-01 21:37:18 | $safePath |
+| Unknown | audio.bin | 0 | 2023-11-01 21:37:06 | $safePath |
+| Unknown | audio.bin | 0 | 2024-05-31 20:29:21 | $safePath |
 | Unknown | audio.bin | 0 | 2024-05-31 20:29:33 | $safePath |
-| Unknown | audio_sample.bin | 0.001 | 2024-05-31 20:29:52 | $safePath |
 | Unknown | audio_sample.bin | 0.001 | 2023-11-01 21:37:35 | $safePath |
+| Unknown | audio_sample.bin | 0.001 | 2024-05-31 20:29:52 | $safePath |
 | Unknown | audio_sample_wav.bin | 0 | 2023-11-01 21:37:45 | $safePath |
-| Unknown | audio_sample_tdm.bin | 0.001 | 2023-11-01 21:37:45 | $safePath |
 | Unknown | audio_sample_tdm.bin | 0.001 | 2023-11-01 21:37:10 | $safePath |
-| Unknown | audio_sample_tdm.bin | 0.001 | 2023-11-01 21:37:16 | $safePath |
-| Unknown | audio_sample_tdm.bin | 0.001 | 2024-05-31 20:29:25 | $safePath |
 | Unknown | audio_sample_tdm.bin | 0.001 | 2024-05-31 20:29:32 | $safePath |
+| Unknown | audio_sample_tdm.bin | 0.001 | 2023-11-01 21:37:45 | $safePath |
+| Unknown | audio_sample_tdm.bin | 0.001 | 2024-05-31 20:29:25 | $safePath |
+| Unknown | audio_sample_tdm.bin | 0.001 | 2023-11-01 21:37:16 | $safePath |
 | Unknown | audio_sample_tdm.bin | 0 | 2024-05-31 20:29:21 | $safePath |
 | Unknown | audio_sample_tdm.bin | 0 | 2023-11-01 21:37:05 | $safePath |
 | Unknown | audio_sample_tdm.bin | 0 | 2023-11-01 21:37:06 | $safePath |
@@ -358,8 +356,8 @@ Generated: 2026-05-28 15:57:50
 | Unknown | app_i2c_tp.bin | 0 | 2023-07-12 14:24:44 | $safePath |
 | Unknown | app_i2c_slave.bin | 0 | 2023-07-12 14:24:14 | $safePath |
 | Unknown | app_i2c_master.bin | 0 | 2023-07-12 14:23:44 | $safePath |
-| Unknown | app_gpio.bin | 0 | 2024-03-14 12:25:06 | $safePath |
 | Unknown | app_gpio.bin | 0 | 2023-07-12 14:14:12 | $safePath |
+| Unknown | app_gpio.bin | 0 | 2024-03-14 12:25:06 | $safePath |
 | Unknown | app_dual_tim.bin | 0 | 2023-07-12 14:13:44 | $safePath |
 | Unknown | app_dspi.bin | 0 | 2023-07-12 14:13:12 | $safePath |
 | Unknown | app_dma.bin | 0 | 2023-07-12 14:12:42 | $safePath |
@@ -369,8 +367,8 @@ Generated: 2026-05-28 15:57:50
 | Unknown | app_crypto_aes.bin | 0 | 2023-07-12 14:10:02 | $safePath |
 | Unknown | app_coremark.bin | 0 | 2023-07-12 14:26:16 | $safePath |
 | Unknown | app_comp.bin | 0 | 2023-07-12 14:09:18 | $safePath |
-| Unknown | app_bootloader.bin | 0 | 2023-07-12 14:06:06 | $safePath |
 | Unknown | app_bootloader.bin | 0 | 2024-03-13 10:51:54 | $safePath |
+| Unknown | app_bootloader.bin | 0 | 2023-07-12 14:06:06 | $safePath |
 | Unknown | app_bod.bin | 0 | 2023-07-12 14:08:46 | $safePath |
 | Unknown | app_aon_wdt.bin | 0 | 2023-07-12 14:08:14 | $safePath |
 | Unknown | app_adc.bin | 0 | 2023-07-12 14:07:40 | $safePath |
@@ -399,12 +397,20 @@ Generated: 2026-05-28 15:57:50
 | Unknown | 0x0000_2023-06-06_17-38-37.bin | 0.005 | 2024-03-13 10:51:54 | $safePath |
 | Unknown | 0x0000_2022-05-06_09-56-26.bin | 0.007 | 2023-08-04 13:35:00 | $safePath |
 | Unknown | _virtualenv.pth | 0 | 2024-10-19 12:49:05 | $safePath |
-| Unknown | _virtualenv.pth | 0 | 2026-05-10 17:11:44 | $safePath |
 | Unknown | _virtualenv.pth | 0 | 2024-09-11 14:01:28 | $safePath |
+| Unknown | _virtualenv.pth | 0 | 2026-05-10 17:11:44 | $safePath |
+| LoRA / LyCORIS | ratatatat74_pony_v2.safetensors | 0.066 | 2026-05-28 15:26:41 | $safePath |
+| LoRA / LyCORIS | Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors | 0.791 | 2026-05-24 20:30:48 | $safePath |
+| LoRA / LyCORIS | PONYXL_STYLE_Gagala_ownwaifu.safetensors | 0.213 | 2026-05-28 15:27:55 | $safePath |
+| LoRA / LyCORIS | Haoni-P4v3-PDXL.safetensors | 0.097 | 2026-05-28 15:27:10 | $safePath |
+| LoRA / LyCORIS | Haoni-P4v3-PDXL (1).safetensors | 0.097 | 2026-05-28 15:27:18 | $safePath |
 | GGUF / LLM | qwen2-7b-instruct-q8_0.gguf | 7.542 | 2024-08-03 21:42:43 | $safePath |
 | GGUF / LLM | qwen2-7b-instruct-q4_k_m.gguf | 4.361 | 2024-08-03 21:39:59 | $safePath |
 | GGUF / LLM | qwen1.5-14b-vntl.Q4_K_S.gguf | 7.977 | 2024-08-03 21:42:22 | $safePath |
+| GGUF / LLM | Qwen-Image-Edit-2511-Q3_K_S.gguf | 8.338 | 2026-05-25 00:28:06 | $safePath |
 | GGUF / LLM | MythoMax-L2-13b-heretic.i1-IQ4_XS.gguf | 6.486 | 2026-05-27 17:48:51 | $safePath |
+| GGUF / LLM | MythoMax-L2-13b-heretic.i1-IQ4_XS.gguf | 6.486 | 2026-05-27 17:48:51 | $safePath |
+| GGUF / LLM | L3-8B-Stheno-v3.2-heretic.i1-Q5_K_M.gguf | 5.339 | 2026-05-27 17:47:34 | $safePath |
 | GGUF / LLM | L3-8B-Stheno-v3.2-heretic.i1-Q5_K_M.gguf | 5.339 | 2026-05-27 17:47:34 | $safePath |
 | ControlNet | controlnet++_union_sdxl_promax.safetensors | 2.341 | 2026-05-22 14:27:14 | $safePath |
 | ControlNet | control_v11p_sd15s2_lineart_anime_fp16.safetensors | 0.673 | 2026-05-22 13:43:07 | $safePath |
@@ -422,3 +428,5 @@ Generated: 2026-05-28 15:57:50
 | ControlNet | control_v11e_sd15_shuffle_fp16.safetensors | 0.673 | 2026-05-22 13:13:59 | $safePath |
 | ControlNet | control_v11e_sd15_ip2p_fp16.safetensors | 0.673 | 2026-05-22 13:14:32 | $safePath |
 | CLIP / Text Encoder | model.safetensors | 0.564 | 2026-04-30 19:03:23 | $safePath |
+| Checkpoint | v1-5-pruned-emaonly-fp16.safetensors | 1.986 | 2026-05-25 11:59:27 | $safePath |
+| Checkpoint | ponyDiffusionV6XL_v6StartWithThisOne.safetensors | 6.462 | 2026-05-23 15:38:40 | $safePath |

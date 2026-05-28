@@ -10,12 +10,7 @@ if ($Roots.Count -eq 0) {
         "$user\Downloads",
         "$user\Documents",
         "$user\Desktop",
-        "C:\AI",
-        "C:\ComfyUI",
-        "C:\stable-diffusion-webui",
-        "D:\Models",
-        "D:\ComfyUI",
-        "D:\stable-diffusion-webui",
+        "D:\Models"
     )
 }
 

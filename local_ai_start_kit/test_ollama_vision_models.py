@@ -95,8 +95,8 @@ def main():
             print(f"ERROR: {e}")
         results.append(item)
 
-    out_json = Path("ollama_vision_test_results.json")
-    out_md = Path("ollama_vision_test_results.md")
+    out_json = Path("ollama_vision_test_results_2.json")
+    out_md = Path("ollama_vision_test_results_2.md")
 
     out_json.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
 
