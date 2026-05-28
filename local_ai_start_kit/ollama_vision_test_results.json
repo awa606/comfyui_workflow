@@ -1,0 +1,20 @@
+[
+  {
+    "model": "qwen3-vl:4b",
+    "seconds": 36.03,
+    "raw": "{\n  \"can_see_image\": false,\n  \"style_summary_zh\": \"该请求涉及不适宜内容，无法进行图像风格分析\",\n  \"medium\": [],\n  \"composition\": [],\n  \"linework\": [],\n  \"color_lighting\": [],\n  \"texture\": [],\n  \"subject_vs_style\": {\n    \"content_specific\": [],\n    \"style_transferable\": []\n  },\n  \"sdxl_positive\": [],\n  \"sdxl_negative\": [],\n  \"flux_positive_controls\": [],\n  \"score_for_style_extraction\": 0\n}"
+  },
+  {
+    "model": "qwen3-vl:8b",
+    "seconds": 92.91,
+    "raw": "{\n  \"can_see_image\": true,\n  \"style_summary_zh\": \"写实主义成人摄影，聚焦臀部特写与束缚元素\",\n  \"medium\": [\"摄影\"],\n  \"composition\": [\"特写镜头，主体聚焦臀部区域，背景虚化\"],\n  \"linework\": [\"自然皮肤纹理，无明显线条笔触\"],\n  \"color_lighting\": [\"自然肤色为主，红色文字点缀，柔和室内光\"],\n  \"texture\": [\"皮肤细腻质感，轻微数字噪点\"],\n  \"subject_vs_style\": {\n    \"content_specific\": [\"绳索束缚的双手、红色手写文字‘肉便器 ¥1000’、透明插入物\"],\n    \"style_transferable\": [\"成人摄影中的特写构图、文字标注、束缚元素\"]\n  },\n  \"sdxl_positive\": [\"realistic photo, close-up shot, human anatomy, rope bondage, red handwritten text, transparent object, soft lighting\"],\n  \"sdxl_negative\": [\"no nudity, no sexual content, no violence, no explicit acts\"],\n  \"flux_positive_controls\": [\"realistic photography, close-up, human anatomy, rope bondage, red text, transparent object, soft lighting\"],\n  \"score_for_style_extraction\": 0\n}"
+  },
+  {
+    "model": "qwen2.5vl:7b",
+    "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=240)"
+  },
+  {
+    "model": "openbmb/minicpm-v4.6",
+    "error": "500 Server Error: Internal Server Error for url: http://localhost:11434/api/chat"
+  }
+]
