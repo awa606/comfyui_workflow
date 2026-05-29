@@ -9,10 +9,13 @@ __pycache__/
 *.pth
 *.bin
 *.onnx
+*.npz
 
 # Raw/private/generated project data
 outputs/*
+outputs/p05_face_crops/*
 metadata/*
+metadata/p05_*.csv
 video_frames/
 face_crops/
 logs/*
@@ -86,6 +89,14 @@ characters/**/metadata/*.csv
 !characters/
 !characters/**/
 !characters/**/.gitkeep
+training_data/**/*.jpg
+training_data/**/*.jpeg
+training_data/**/*.png
+training_data/**/*.webp
+training_data/**/*.mp4
+training_data/**/*.mov
+local_ai_style_extractor_v2/results/*
+local_ai_style_extractor_v2/reference_images/**/*
 
 # Keep empty directory placeholders
 !outputs/
