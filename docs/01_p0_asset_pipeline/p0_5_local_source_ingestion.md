@@ -96,6 +96,10 @@ D:\sd.webui\ComfyUI\venv\Scripts\python.exe scripts\export_face_crops_p05.py ^
 
 The script checks for local InsightFace files under `INSIGHTFACE_HOME`, `INSIGHTFACE_ROOT`, or `C:\Users\<user>\.insightface`. It does not download models.
 
+On Windows, `onnxruntime-gpu` may need PyTorch's bundled CUDA/cuDNN DLLs to be loaded before InsightFace initializes. The face crop script preloads `torch` when `CUDAExecutionProvider` is requested so CUDA DLLs such as `cublasLt64_12.dll` are visible to ONNX Runtime.
+
+If a non-identity bucket such as `styles` produces face crops, treat those crops as review artifacts only. A face crop means "a face detector found a face in a safe image"; it does not mean the image should be used for FaceID, IPAdapter identity reference, or identity LoRA.
+
 Prepare the caption queue:
 
 ```bat

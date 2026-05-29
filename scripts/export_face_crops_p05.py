@@ -171,7 +171,28 @@ def assert_local_insightface_model(root: Path, model_name: str) -> None:
         )
 
 
+def should_preload_cuda_dlls(providers: list[str] | None) -> bool:
+    if providers is None:
+        return True
+    return any(provider == "CUDAExecutionProvider" for provider in providers)
+
+
+def preload_cuda_dlls(providers: list[str] | None) -> None:
+    if not should_preload_cuda_dlls(providers):
+        return
+
+    try:
+        import torch  # type: ignore
+    except ImportError:
+        return
+
+    # Importing torch on Windows loads its bundled CUDA/cuDNN DLLs so
+    # onnxruntime-gpu can resolve CUDAExecutionProvider dependencies.
+    _ = torch.cuda.is_available()
+
+
 def load_face_analysis(model_name: str, model_root: Path, providers: list[str] | None) -> Any:
+    preload_cuda_dlls(providers)
     try:
         from insightface.app import FaceAnalysis  # type: ignore
     except ImportError:
